@@ -66,7 +66,7 @@ When you trigger the **Build RootFS** workflow via `workflow_dispatch`, the foll
 | **Custom partition** | Partition name to flash the rootfs to. **Required only when Boot mode is `custom`.** | any partition name (e.g. `debian`) | *(empty)* |
 | **Kernel source** | How to obtain the kernel image. **`prebuilt` is not available when Boot mode is `custom`.** | `prebuilt` – use a prebuilt kernel from [ianchb/sm8550-mainline](https://github.com/ianchb/sm8550-mainline); <br> `custom_build` – clone and compile a custom kernel from the repo specified below | `prebuilt` |
 | **Kernel Repo URL** | Git repository URL for the custom kernel. **Required when kernel source is `custom_build`.** | valid Git URL | `https://github.com/ianchb/sm8550-mainline` |
-| **Kernel Branch** | Branch to checkout from the kernel repository. **Required when kernel source is `custom_build`.** | branch name | `sheng-7.2-rc7` |
+| **Kernel Branch** | Branch to checkout from the kernel repository. **Required when kernel source is `custom_build`.** | branch name | `sheng-7.2.2` |
 | **Kernel Config** | Kernel config file name inside the repository. **Required when kernel source is `custom_build`.** | file name (e.g. `sm8550.config`) | `sm8550.config` |
 | **Firmware Repo URL** | Git repository URL for device firmware files. | valid Git URL | `https://github.com/ianchb/sheng-firmware` |
 | **Firmware Branch** | Branch to checkout from the firmware repository. | branch name | `master` |
@@ -76,6 +76,19 @@ When you trigger the **Build RootFS** workflow via `workflow_dispatch`, the foll
 > - If `ROOTFS_PASSWORD` is not set, the image will still be built, but the password will fall back to the insecure default value: `password`.  
 > - If you choose **Boot mode = `custom`**, you **must** fill in the **Custom partition** field.  
 > - If you choose **Kernel source = `custom_build`**, you **must** provide the **Kernel Repo URL**, **Kernel Branch**, and **Kernel Config** fields.  
+---
+
+## About Some Packages...
+
+| Package | Description |
+|---------|-------------|
+| [xiaomi-mipps-auth](https://github.com/ianchb/xiaomi-mipps-auth) | Automatically negotiates MIPPS when a charger is connected, enabling fast charging up to 120 W and providing charging notifications. |
+| [xiaomi-charger-mode](https://github.com/ianchb/xiaomi-charger-mode) | Shows a simple charging screen and prevents a full system boot when a charger is connected while the device is powered off. |
+| [xiaomi-sheng-thp](https://github.com/ianchb/xiaomi-sheng-thp) | Processes touch data for finger input and stylus support. |
+| [xiaomi-pen-status](https://github.com/ianchb/xiaomi-pen-status) | Shows stylus connection and battery status, and automatically attempts the initial Bluetooth connection. |
+| [xiaomi-sheng-fingerprint](https://github.com/ianchb/xiaomi-sheng-fingerprint) | Provides TEE-based fingerprint reader support, including patches for `libfprint` and `fprintd`. |
+| [xiaomi-sheng-keyboard-helper](https://github.com/ianchb/xiaomi-sheng-keyboard-helper) | Supports the microphone indicator on the official keyboard and disables keyboard input based on the hinge angle. |
+
 ---
 
 ## Flashing to Your Device
